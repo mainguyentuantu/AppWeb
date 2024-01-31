@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AppWeb.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppWeb.Models
 {
@@ -9,7 +10,7 @@ namespace AppWeb.Models
 
         }
 
-        public DbSet<Orders> Orders { get; set; }   
+        public DbSet<Order> Orders { get; set; }   
 
 
     }

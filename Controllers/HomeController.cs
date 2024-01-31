@@ -1,5 +1,7 @@
+using AppWeb.Data;
 using AppWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace AppWeb.Controllers
@@ -9,20 +11,19 @@ namespace AppWeb.Controllers
         private readonly ILogger<HomeController> _logger;
 
         //create DbContext variable
-        private readonly MyDbContext _context;
+        private readonly ProductsContext _context;
 
-        public HomeController(ILogger<HomeController> logger, MyDbContext dbContext)
+        public HomeController(ILogger<HomeController> logger, ProductsContext dbContext)
         {
             _logger = logger;
             _context = dbContext;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            //fetch data from database table orders
             var orders = _context.Orders.ToList();
 
-            return View();
+            return View(orders);
         }
 
         public IActionResult Privacy()
